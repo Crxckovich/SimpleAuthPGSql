@@ -1,6 +1,6 @@
-import type {Request, Response} from "express";
+import type {NextFunction, Request, Response} from "express";
 
-export class AppError extends Error {
+export class AppStatus extends Error {
     statusCode: number;
     status: string;
 
@@ -13,9 +13,10 @@ export class AppError extends Error {
 }
 
 export const errorHandler = (
-    err: AppError,
+    err: AppStatus,
     req: Request,
     res: Response,
+    next: NextFunction
 ) => {
     const statusCode = err.statusCode || 500;
 

@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import userController from "./user.controller.ts";
-import {asyncHandler} from "../middleware/asyncHandler.ts";
+import {asyncMiddleware} from "../middleware/async.middleware.ts";
 
-export const router = Router();
+export const userRouter = Router();
 
-router.get('/users', asyncHandler(userController.getUsers));
+userRouter.get('/users', asyncMiddleware(userController.getUsers));
 
 // router.post('/users', userController.createUser);
 // router.get('/users/:id', userController.getOneUser);

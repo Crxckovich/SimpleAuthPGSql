@@ -1,8 +1,13 @@
 import { Router } from 'express';
 import authController from "./auth.controller.ts";
-import {asyncHandler} from "../middleware/asyncHandler.ts";
+import {asyncMiddleware} from "../middleware/async.middleware.ts";
+import { check } from "express-validator";
+import {authMiddleware} from "../middleware/auth.middleware.ts";
 
-export const router = Router();
+export const authRouter = Router();
 
-router.post("/signup", asyncHandler(authController.signup));
-router.post("/signin", asyncHandler(authController.signin))
+authRouter.post("/signup",
+    check("name", "Имя пользователя не может быть пустым!").notEmpty(),
+    check("password", "Пароль должен быть больше 4-х символов").isLength({ min: 4 }),
+    asyncMiddleware(authController.signup));
+authRouter.post("/signin", asyncMiddleware(authController.signin))

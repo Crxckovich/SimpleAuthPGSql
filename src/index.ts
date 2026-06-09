@@ -1,16 +1,16 @@
 import 'dotenv/config';
 import express from 'express';
-import {router} from "./user/user.routes.ts";
-import {errorHandler} from "./middleware/globalErrorHandler.ts";
+import {errorHandler} from "./middleware/globalError.middleware.ts";
+import apiRouter from "./routes";
+import {authMiddleware} from "./middleware/auth.middleware.ts";
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
 
 app.use(express.json())
-app.use('/api', router)
+app.use('/api', apiRouter)
 app.use(errorHandler);
-
 
 async function main() {
     try {
