@@ -2,9 +2,9 @@
 
 1. **Установка зависимостей**
 
-    ```sh
-    bun i
-    ```
+   ```sh
+   bun i
+   ```
 
 2. **Запуск БД в Docker**
 
@@ -25,6 +25,7 @@
    ```
 
 5. **(Опционально) Запуск студийки [database studio](https://orm.drizzle.team/drizzle-studio/overview)**
+
    ```bash
    bun db:studio
    ```
@@ -33,4 +34,3 @@
    ```sh
    bun db:stop
    ```
-
